@@ -1,11 +1,3 @@
-"""
-evaluate.py — Compute mAP, precision, recall on the validation split.
-
-Usage:
-    python src/evaluate.py
-    python src/evaluate.py --model models/best.pt --data data/rdd2022.yaml
-"""
-
 import argparse
 from ultralytics import YOLO
 
