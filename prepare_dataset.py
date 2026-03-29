@@ -1,19 +1,3 @@
-"""
-prepare_dataset.py — Download RDD2022 India subset and convert to YOLO format.
-
-RDD2022 paper: https://arxiv.org/abs/2209.08538
-Download page: https://github.com/sekilab/RoadDamageDetector
-
-Class mapping (RDD2022 → this project):
-    D00 — Alligator crack
-    D10 — Longitudinal crack
-    D20 — Transverse crack
-    D40 — Pothole  ← primary target
-
-Usage:
-    python scripts/prepare_dataset.py --country India
-"""
-
 import os
 import argparse
 import shutil
@@ -21,19 +5,19 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 from tqdm import tqdm
 
-# All RDD2022 classes (YOLO class index must be consistent)
+
 CLASS_MAP = {
-    "D00": 0,  # Alligator / fatigue crack
-    "D10": 1,  # Longitudinal crack
-    "D20": 2,  # Transverse crack
-    "D40": 3,  # Pothole
+    "D00": 0,  
+    "D10": 1,  
+    "D20": 2,  
+    "D40": 3,  
 }
 
 CLASS_NAMES = list(CLASS_MAP.keys())
 
 
 def pascal_to_yolo(size, box):
-    """Convert Pascal VOC bbox to YOLO normalised format."""
+    
     dw, dh = 1.0 / size[0], 1.0 / size[1]
     x = (box[0] + box[1]) / 2.0 * dw
     y = (box[2] + box[3]) / 2.0 * dh
@@ -43,7 +27,7 @@ def pascal_to_yolo(size, box):
 
 
 def convert_annotation(xml_path: Path, label_out: Path):
-    """Parse one Pascal VOC XML and write YOLO .txt label."""
+    
     tree = ET.parse(xml_path)
     root = tree.getroot()
 
@@ -99,9 +83,9 @@ def prepare(rdd_root: str, out_root: str = "data", country: str = "India", val_s
             if xml_path.exists():
                 convert_annotation(xml_path, lbl_path)
             else:
-                lbl_path.write_text("")  # empty label for unannotated images
+                lbl_path.write_text("")  
 
-    # Write dataset YAML
+    
     yaml_content = f"""# RDD2022 — Road Damage Dataset (country: {country})
 path: {out_root.resolve()}
 train: train/images
