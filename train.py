@@ -1,14 +1,3 @@
-"""
-train.py — Fine-tune YOLOv8 on the RDD2022 (Road Damage Dataset) pothole subset.
-
-Dataset: https://github.com/sekilab/RoadDamageDetector
-Classes used: D10 (longitudinal crack), D20 (transverse crack), D40 (pothole), D00 (alligator crack)
-
-Usage:
-    python src/train.py
-    python src/train.py --epochs 100 --batch 16 --img 640
-"""
-
 import argparse
 from pathlib import Path
 from ultralytics import YOLO
@@ -16,7 +5,7 @@ from ultralytics import YOLO
 
 def train(
     data_yaml: str = "data/rdd2022.yaml",
-    model_size: str = "yolov8m.pt",   # n / s / m / l / x
+    model_size: str = "yolov8m.pt",   
     epochs: int = 50,
     img_size: int = 640,
     batch: int = 16,
@@ -36,7 +25,7 @@ def train(
         project=project,
         name=name,
         resume=resume,
-        patience=15,          # early stopping
+        patience=15,          
         lr0=0.01,
         lrf=0.001,
         mosaic=1.0,
