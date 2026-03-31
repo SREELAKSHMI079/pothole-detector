@@ -3,17 +3,16 @@ YOLOv8-based road damage detection
 
 #  Pothole Detector — YOLOv8-based Road Damage Detection
 
-This project is a real-time road damage detection system that uses **YOLOv8** to identify and classify potholes and road surface defects from images, videos, or a live webcam feed. Each detection is annotated with a **severity rating** (Low / Medium / High) based on the size of the damage relative to the frame.
+The road damage detection project using YOLOv8 to identify and classify potholes and road surface damages in images and videos or from a webcam in real-time. All detections are tagged with a **severity rating** (Low / Medium / High) based on size of damage relative to frame.
 
 
 
-##  Problem Statement
+##  Problem   Statement
 
-Potholes and road damage are a persistent hazard across Indian cities, causing vehicle damage, accidents, and increased commute times. Manual inspection is slow, inconsistent, and expensive. This project builds an automated computer vision pipeline that can process dashcam footage or road images to detect and flag damage — enabling faster, data-driven road maintenance decisions.
-
+The cities of India are always prone to road damages such as potholes and others who are not just an inconvenience. Do the task slowly, not consistent and expensive. This project creates an automated computer vision pipeline that can analyze dashcam videos and/or road images to detect and highlight damage for quicker, more efficient, data-driven road repair decisions.
 ---
 
-## Project Structure
+##   Project   Structure
 
 ```
 pothole-detector/
@@ -37,25 +36,25 @@ pothole-detector/
 
 ##  Setup
 
-### 1. Clone the repository
+#### 1 . Clone   the   repository
 
 ```bash
 git clone https://github.com/SREELAKSHMI079/pothole-detector.git
 cd pothole-detector
 ```
 
-### 2. Create a virtual environment (recommended)
+#### 2. Create  a  virtual  environment 
 
 ```bash
-python -m venv venv
+python  -m  venv  venv
 source venv/bin/activate        # Linux / macOS
 venv\Scripts\activate           # Windows
 ```
 
-### 3. Install dependencies
+#### 3. Install dependencies
 
 ```bash
-pip install -r requirements.txt
+pip  install  -r requirements.txt
 ```
 
 > **GPU users:** Install PyTorch with CUDA first:  
@@ -65,7 +64,7 @@ pip install -r requirements.txt
 
 ##  Dataset
 
-This project uses the **RDD2022 (Road Damage Dataset 2022)** — a large-scale open dataset with 47,420 road images from India, Japan, Norway, and the USA, annotated in Pascal VOC format.
+This project relies on the RDD2022 (Road Damage Dataset 2022) which a massive annotated open dataset with 47,420 road images from India, Japan, Norway, and the USA in Pascal VOC format.
 
 **Download:** https://github.com/sekilab/RoadDamageDetector
 
@@ -77,11 +76,11 @@ This project uses the **RDD2022 (Road Damage Dataset 2022)** — a large-scale o
 | 2  | D20  | Transverse crack   |
 | 3  | D40  | **Pothole**        |
 
-### Prepare the dataset
+#### Prepare the dataset
 
 ```bash
-# After downloading RDD2022 to data/RDD2022/
-python scripts/prepare_dataset.py --country India
+# After downloading RDD2022 to data/RDD2022/.
+python scripts / prepare_dataset.py  --country   India
 ```
 
 This converts Pascal VOC annotations to YOLO format and generates `data/rdd2022.yaml`.
@@ -91,7 +90,7 @@ This converts Pascal VOC annotations to YOLO format and generates `data/rdd2022.
 ##  Training
 
 ```bash
-python src/train.py --epochs 50 --batch 16 --img 640
+python src/train.py -- epochs 50 -- batch 16 -- img 640. 
 ```
 
 | Argument | Default       | Description                   |
@@ -101,9 +100,9 @@ python src/train.py --epochs 50 --batch 16 --img 640
 | `--img`    | 640         | Input image size              |
 | `--model`  | yolov8m.pt  | Base model (n/s/m/l/x)        |
 
-After training, copy the best weights:
+Use the best weights after training.
 ```bash
-cp runs/train/pothole_v1/weights/best.pt models/best.pt
+cp runs/train/pothole_v1/weights/best.pt models/best.pt.
 ```
 
 ---
@@ -112,22 +111,22 @@ cp runs/train/pothole_v1/weights/best.pt models/best.pt
 
 ### On a single image
 ```bash
-python src/detect.py --source data/sample_images/road.jpg --save
+python src / detect.py -- source data / sample_images/road . jpg -- save
 ```
 
 ### On a video file
 ```bash
-python src/detect.py --source data/road_video.mp4 --save
+python src / detect.py --source data/ road_video.  mp4 -- save
 ```
 
 ### Live webcam
 ```bash
-python src/detect.py --source 0
+python src / detect . py -- source 0
 ```
 
 | Argument | Default        | Description                          |
 |----------|----------------|--------------------------------------|
-| `--source` | *(required)* | Image/video path or webcam index `0` |
+| `--source` | *(required) | Image/video path or webcam index `0` |
 | `--model`  | models/best.pt | Path to trained weights              |
 | `--conf`   | 0.35           | Confidence threshold (0–1)           |
 | `--save`   | False          | Save annotated output to `runs/`     |
@@ -148,27 +147,25 @@ python src/detect.py --source 0
 python src/evaluate.py --model models/best.pt --data data/rdd2022.yaml
 ```
 
-Outputs mAP@0.50, mAP@0.50:0.95, Precision, and Recall on the validation split.
+You can result mAP@0.50, mAP@0.50:0.95, Precision and Recall on the validation split.
 
 ---
 
 ##  Model
 
-- **Architecture:** YOLOv8m (medium) — balanced speed/accuracy tradeoff
-- **Pre-training:** COCO (via Ultralytics)
-- **Fine-tuned on:** RDD2022 India subset
-- **Input size:** 640 × 640
-- **Inference speed:** ~25–30 FPS on a mid-range GPU
+- *Architecture:** YOLOv8m (medium) — balanced speed/accuracy tradeoff
+- *Pre-training:** COCO (via Ultralytics)
+- *Refined using: RDD2022 India subset.
+- The input size is 640 × 640 and the inference speed is ~25 FPS – 30 FPS on a mid-range GPU.
 
 ---
 
 ##  Dependencies
 
-- [Ultralytics YOLOv8](https://github.com/ultralytics/ultralytics)
+- Ultralytics YOLOv8
 - OpenCV
-- PyTorch ≥ 2.0
+- PyTorch is 2.0 or Greater
 - tqdm, matplotlib, NumPy
-
 ---
 
 ##  License
