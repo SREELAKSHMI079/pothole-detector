@@ -80,7 +80,7 @@ This project relies on the RDD2022 (Road Damage Dataset 2022) which a massive an
 
 ```bash
 # After downloading RDD2022 to data/RDD2022/.
-python scripts /prepare_dataset.py  --country  India
+python scripts/prepare_dataset.py  --country  India
 ```
 
 This converts Pascal VOC annotations to YOLO format and generates `data/rdd2022.yaml`.
@@ -111,17 +111,17 @@ cp runs/train/pothole_v1/weights/best.pt models/best.pt.
 
 ### On a single image
 ```bash
-python src /detect.py -- source data /sample_images/road . jpg -- save
+python src/detect.py -- source data /sample_images/road . jpg -- save
 ```
 
 ### On a video file
 ```bash
-python src /detect.py --source data/road_video.mp4 -- save
+python src/detect.py --source data/road_video.mp4 -- save
 ```
 
 ### Live webcam
 ```bash
-python src /detect. py -- source 0
+python src/detect. py -- source 0
 ```
 
 | Argument | Default        | Description                          |
