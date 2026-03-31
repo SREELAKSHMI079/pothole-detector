@@ -2,14 +2,12 @@
 YOLOv8-based road damage detection 
 
 #  Pothole Detector — YOLOv8-based Road Damage Detection
-
-The road damage detection project using YOLOv8 to identify and classify potholes and road surface damages in images and videos or from a webcam in real-time. All detections are tagged with a **severity rating** (Low / Medium / High) based on size of damage relative to frame.
-
+This project uses YOLOv8 to spot potholes and other road damage in images, videos, and even from a live webcam feed. It gives everything a severity rating—low, medium, or high—based on the size of the damage compared to the frame.
 
 
 ##  Problem   Statement
 
-The cities of India are always prone to road damages such as potholes and others who are not just an inconvenience. Do the task slowly, not consistent and expensive. This project creates an automated computer vision pipeline that can analyze dashcam videos and/or road images to detect and highlight damage for quicker, more efficient, data-driven road repair decisions.
+Road damage is everywhere in Indian cities. Potholes aren’t just annoying—they make travel slow, unpredictable, and cost a lot to fix. So, instead of doing it the old way, this project builds a computer vision pipeline. It analyzes dashcam videos or road photos automatically, highlights damaged spots, and helps cities make faster, smarter repair decisions.
 ---
 
 ##   Project   Structure
