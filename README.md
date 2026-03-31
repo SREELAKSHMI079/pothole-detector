@@ -7,8 +7,10 @@ This project uses YOLOv8 to spot potholes and other road damage in images, video
 
 ##  Problem   Statement
 
+
 Road damage is everywhere in Indian cities. Potholes aren’t just annoying—they make travel slow, unpredictable, and cost a lot to fix. So, instead of doing it the old way, this project builds a computer vision pipeline. It analyzes dashcam videos or road photos automatically, highlights damaged spots, and helps cities make faster, smarter repair decisions.
 ---
+
 
 ##   Project   Structure
 
